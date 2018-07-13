@@ -1,0 +1,11 @@
+.header{
+    height: 50px;
+    padding: 1%;
+    text-align: center;
+    background-color: rgb(110, 105, 105)
+}
+.header > h1.header-title{
+    text-align: center;
+    font-size: 100%;
+    color:rgb(255, 255, 255)
+}
