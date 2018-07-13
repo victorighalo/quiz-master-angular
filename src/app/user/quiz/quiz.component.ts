@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ValueTransformer } from '../../../../node_modules/@angular/compiler/src/util';
+import { QuizMasterService } from '../../shared/quiz-master.service';
+
 
 @Component({
   selector: 'app-quiz',
@@ -17,7 +18,7 @@ export class QuizComponent implements OnInit {
   // choiceC = 0,
   // choiceD = 0,
   // correct = 0,
-
+  constructor(private _quizMasterService: QuizMasterService) { }
   calculatedResult = {
     totalCorrectAnswers: null,
     totalQuestionsAnswered: null
@@ -25,7 +26,8 @@ export class QuizComponent implements OnInit {
   currentQuestion: any;
   position = 1;
   answers: any[] = [];
-  questions: any[] = [
+  questions: any = [];
+  questionsOld: any = [
     {
     index: 1,
     question: 'What is 10 + 4?',
@@ -56,8 +58,6 @@ export class QuizComponent implements OnInit {
     }
   ];
 
-
-  constructor() { }
 
   submitAnswer(answer): void {
     if (this.questions.length <= this.position ) {
@@ -94,7 +94,11 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentQuestion = this.questions.filter( (val) => val.index === this.position );
+    this._quizMasterService.getQuestions().subscribe( (result) => {
+      this.questions = result;
+      this.currentQuestion = this.questions.filter((val) => val.index === this.position);
+      console.log(result);
+    });
   }
 
 }

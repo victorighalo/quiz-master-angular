@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { UserModule } from './user/user.module';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,6 +14,10 @@ const routes: Routes = [
     {
         path: 'user',
         loadChildren: () => UserModule
+    },
+    {
+        path: 'admin',
+        loadChildren: () => AdminModule
     }
 ];
 
