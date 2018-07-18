@@ -1,80 +1,62 @@
-<div class="wrapper ">
-  <div class="sidebar" data-color="purple" data-background-color="white">
-    <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+<div class="uk-section uk-section-primary uk-light">
+  <div class="uk-container">
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-    <div class="logo">
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-        Creative Tim
-      </a>
+    <h3>Welcome to Quiz Master</h3>
+
+    <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+      <div>
+        <p>Create an account.</p>
+      </div>
+      <div>
+        <p>Create a quiz template.</p>
+      </div>
+      <div>
+        <p>Administer quiz via quiz link provided for template.</p>
+      </div>
     </div>
-    <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li class="nav-item active  ">
-          <a class="nav-link" href="#0">
-            <i class="material-icons">dashboard</i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-        <!-- your sidebar here -->
-      </ul>
-    </div>
+
   </div>
-  <div class="main-panel">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-      <div class="container-fluid">
-        <div class="navbar-wrapper">
-          <a class="navbar-brand" href="#pablo">Dashboard</a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="navbar-toggler-icon icon-bar"></span>
-          <span class="navbar-toggler-icon icon-bar"></span>
-          <span class="navbar-toggler-icon icon-bar"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#pablo">
-                <i class="material-icons">notifications</i> Notifications
-              </a>
-            </li>
-            <!-- your navbar here -->
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- End Navbar -->
-    <div class="content">
-      <div class="container-fluid">
-        <!-- your content here -->
+</div>
+
+<div class="uk-container uk-container-expand">
+<div class="uk-section">
+  <div class="uk-container uk-width-1-3">
+<form class="uk-form-stacked" [formGroup]="addQuestionForm">
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">Add Question</legend>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="form-stacked-text">Add question</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" type="text" formControlName="question">
       </div>
     </div>
-    <footer class="footer">
-      <div class="container-fluid">
-        <nav class="float-left">
-          <ul>
-            <li>
-              <a href="https://www.creative-tim.com">
-                Creative Tim
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="copyright float-right">
-          &copy;
-          <script>
-            document.write(new Date().getFullYear())
-          </script>, made with
-          <i class="material-icons">favorite</i> by
-          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-stacked-text">Add option</label>
+          <div class="uk-form-controls">
+            <div class="uk-clearfix">
+              <div class="uk-float-left">
+            <input class="uk-input" type="text" formControlName="option">
+            </div>
+            <div class="uk-float-right">
+            <button class="uk-button uk-button-info" (click)=addOption() [disabled]="option.errors && (option.pristine || option.untouched)">Add</button>
+            </div>
+            </div>
+            <ul class="uk-list uk-list-bullet uk-list-striped">
+              <li *ngFor="let option of options; let i = index">
+              <div class="uk-float-left"><span class="uk-badge" *ngIf="option.answer">Answer</span> {{option.value}} </div>
+                <div class="uk-float-right">
+                  <a href="javascript:;" (click)="markAnswer(i, option.value)" uk-icon="icon: check" class="uk-icon-link uk-margin-small-left"></a>
+                  <a href="javascript:;" (click)=removeOption(i) uk-icon="icon: minus-circle" class="uk-icon-link uk-margin-small-right"></a>
+                </div>
+                </li>
+            </ul>
+          </div>
         </div>
-        <!-- your footer here -->
-      </div>
-    </footer>
-  </div>
+
+<button class="uk-button uk-width-1-1 uk-box-shadow-large uk-button-primary" (click)=saveQuestion()>Submit</button>
+  </fieldset>
+</form>
+</div>
+</div>
 </div>

@@ -75,14 +75,13 @@ input[type=radio]{
 label {
   font-size: 0.8rem;
   font-weight: bold;
-  line-height: 1;
+  line-height: 3;
   cursor: pointer;
   display: block;
   padding: 0.8rem 1rem 0.8rem 3rem;
   position: relative;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   background: white;
-  whitespace: no-wrap;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-transition: all .15s ease;
@@ -98,7 +97,7 @@ label:before {
   content: "";
   position: absolute;
   left: 0.8rem;
-  top: 0.8rem;
+  top: 1.2rem;
   width: 16px;
   height: 16px;
   border-radius: 50%;

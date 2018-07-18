@@ -1,16 +1,23 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { QuizMasterService } from './quiz-master.service';
+import { TopnavbarComponent } from './layout/topnavbar/topnavbar.component';
+import { UiModalDirective } from './layout/modal/modal.component';
 @NgModule({
-  imports: [
-    CommonModule
+  imports: [ ],
+  exports: [
+    TopnavbarComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    UiModalDirective
   ],
-  declarations: []
+  declarations: [TopnavbarComponent, UiModalDirective]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: CommonModule,
+      ngModule: SharedModule,
       providers: [
         QuizMasterService
        ]
